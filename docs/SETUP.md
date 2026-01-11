@@ -93,6 +93,8 @@ Notes:
 - Configure environment variables in the Vercel dashboard (Project Settings → Environment Variables).
 - Do not put secrets in `vercel.json` or in your repo — always use the dashboard or `vercel env`.
 
+**Vercel Node version requirement:** Vercel uses newer Node.js versions for its build platform and may reject builds if your `package.json` specifies an unsupported/older Node version. This project now sets `"engines": { "node": "24.x" }` in `package.json` to satisfy Vercel's requirement — if you still see a Node version error on deploy, ensure `package.json` is up-to-date and re-deploy.
+
 ### Future considerations & gotchas ⚠️
 
 - Cold starts & limits: serverless functions have cold starts and execution limits (the `vercel.json` sets a 10s timeout and 1024MB memory for the handler). If you need long-running processes, move them to an external service (e.g., a container, Cloud Run, or scheduled jobs on a platform that supports longer runtimes).
