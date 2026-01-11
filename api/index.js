@@ -1,10 +1,7 @@
-import serverless from "serverless-http";
 import app from "../app.js";
 
-// Wrap the existing Express `app` with serverless-http so Vercel can invoke it
-const handler = serverless(app);
-
-// Export a default function compatible with Vercel's Node runtime (ESM)
-export default async function (req, res) {
-  return handler(req, res);
+// Export a simple handler that delegates to the Express `app`.
+// Express apps are callable (req, res) and work as Vercel function handlers.
+export default async function handler(req, res) {
+  return app(req, res);
 }
